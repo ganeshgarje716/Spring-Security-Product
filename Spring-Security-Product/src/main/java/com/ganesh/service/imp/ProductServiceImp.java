@@ -1,11 +1,13 @@
 package com.ganesh.service.imp;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.ganesh.dto.ProductDto;
 import com.ganesh.entity.Product;
+import com.ganesh.exception.ProductNotFoundException;
 import com.ganesh.repository.ProductRepository;
 import com.ganesh.service.ProductService;
 
@@ -59,6 +61,23 @@ public class ProductServiceImp implements ProductService{
 	public List<Product> findAllProducts() {
 
 		return productRepository.findAll();
+	}
+
+
+
+	@Override
+	public Product findById(Integer id) {
+
+		Optional<Product> byId = productRepository.findById(id);
+		
+		if (byId.isPresent()) {
+			
+			Product product = byId.get();
+			
+			return product;
+		}
+		
+		throw new ProductNotFoundException("Product Not Found With Id = "+id);
 	}
 
 }

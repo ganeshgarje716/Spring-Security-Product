@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,12 +39,22 @@ public class ProductRestController {
 	}
 	
 	
-	
+	@GetMapping("/all")
 	public ResponseEntity<List<Product>> findAllProducts() {
 		
 		List<Product> allProducts = productService.findAllProducts();
 		
 		return new ResponseEntity<List<Product>>(allProducts, HttpStatus.OK);
+	}
+	
+	
+	
+	@GetMapping("/byid/{id}")
+	public ResponseEntity<Product> findById(@PathVariable Integer id) {
+		
+		Product byId = productService.findById(id);
+		
+		return new ResponseEntity<Product>(byId, HttpStatus.OK);
 	}
 
 }

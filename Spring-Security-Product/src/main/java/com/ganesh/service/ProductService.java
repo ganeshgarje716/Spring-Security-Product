@@ -11,5 +11,7 @@ public interface ProductService {
 	ProductDto saveProduct(ProductDto productDto);
 	
 	List<Product> findAllProducts();
+	
+	Product findById(Integer id);
 
 }
