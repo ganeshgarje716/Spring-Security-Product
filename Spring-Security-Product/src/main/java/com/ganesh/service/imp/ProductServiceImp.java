@@ -108,4 +108,19 @@ public class ProductServiceImp implements ProductService{
 		throw new ProductNotFoundException("Product Not Foun With Id = "+id);
 	}
 
+
+
+	@Override
+	public String deleteById(Integer id) {
+		
+		if (productRepository.existsById(id)) {
+			
+			productRepository.deleteById(id);
+			
+			return "Product Delete Success";
+		}
+		
+		throw new ProductNotFoundException("Product Not Found With Id = "+id);
+	}
+
 }

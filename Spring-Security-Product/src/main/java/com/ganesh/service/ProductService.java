@@ -15,5 +15,7 @@ public interface ProductService {
 	Product findById(Integer id);
 	
 	String updateById(Integer id, Product product);
+	
+	String deleteById(Integer id);
 
 }
