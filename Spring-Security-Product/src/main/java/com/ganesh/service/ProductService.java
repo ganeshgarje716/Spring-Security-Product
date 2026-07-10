@@ -13,5 +13,7 @@ public interface ProductService {
 	List<Product> findAllProducts();
 	
 	Product findById(Integer id);
+	
+	String updateById(Integer id, Product product);
 
 }

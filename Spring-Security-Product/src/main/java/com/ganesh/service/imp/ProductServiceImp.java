@@ -80,4 +80,32 @@ public class ProductServiceImp implements ProductService{
 		throw new ProductNotFoundException("Product Not Found With Id = "+id);
 	}
 
+
+
+	@Override
+	public String updateById(Integer id, Product product) {
+		
+		Optional<Product> byId = productRepository.findById(id);
+		
+		if (byId.isPresent()) {
+			
+			Product existing = byId.get();
+			
+			existing.setName(product.getName());
+			existing.setPrice(product.getPrice());
+			existing.setDiscount(product.getDiscount());
+			existing.setStock(product.getStock());
+			existing.setCategory(product.getCategory());
+			existing.setBrand(product.getBrand());
+			existing.setRating(product.getRating());
+			existing.setAvailable(product.getAvailable());
+			
+			productRepository.save(existing);
+			
+			return "Product Update Success";
+		}
+		
+		throw new ProductNotFoundException("Product Not Foun With Id = "+id);
+	}
+
 }
