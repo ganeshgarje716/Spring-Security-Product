@@ -1,5 +1,7 @@
 package com.ganesh.rest;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ganesh.dto.ProductDto;
+import com.ganesh.entity.Product;
 import com.ganesh.service.ProductService;
 
 @RestController
@@ -31,6 +34,15 @@ public class ProductRestController {
 		ProductDto saved = productService.saveProduct(productDto);
 		
 		return new ResponseEntity<ProductDto>(saved, HttpStatus.CREATED);
+	}
+	
+	
+	
+	public ResponseEntity<List<Product>> findAllProducts() {
+		
+		List<Product> allProducts = productService.findAllProducts();
+		
+		return new ResponseEntity<List<Product>>(allProducts, HttpStatus.OK);
 	}
 
 }

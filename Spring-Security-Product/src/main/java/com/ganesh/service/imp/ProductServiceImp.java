@@ -1,5 +1,7 @@
 package com.ganesh.service.imp;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.ganesh.dto.ProductDto;
@@ -49,6 +51,14 @@ public class ProductServiceImp implements ProductService{
 		productDto.setCreatedDate(saved.getCreatedDate());
 		
 		return productDto;
+	}
+
+
+
+	@Override
+	public List<Product> findAllProducts() {
+
+		return productRepository.findAll();
 	}
 
 }
